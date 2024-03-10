@@ -36,6 +36,8 @@
     "fs:allow-read-file",
     "fs:allow-read-text-file",
     "fs:allow-read-text-file-lines",
-    "fs:allow-read-text-file-lines-next"
+    "fs:allow-read-text-file-lines-next",
+    "resources:allow-close",
+    "resources:default"
   ]
 }

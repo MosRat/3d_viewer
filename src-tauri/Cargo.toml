@@ -1,6 +1,6 @@
 [package]
 name = "obj_viewer"
-version = "0.1.0"
+version = "0.2.0"
 description = "A 3dObj Viewer Build by Tauri and Three.js "
 authors = ["whl"]
 edition = "2021"
@@ -11,12 +11,13 @@ edition = "2021"
 tauri-build = { version = "2.0.0-beta", features = [] }
 
 [dependencies]
-tauri = { version = "2.0.0-beta", features = ["protocol-asset"] }
+tauri = { version = "2.0.0-beta", features = ["protocol-asset", "devtools"] }
 tauri-plugin-shell = "2.0.0-beta"
 serde_json = "1.0"
 window-vibrancy = "0.5.0"
 tauri-plugin-fs = "2.0.0-beta.2"
 tauri-plugin-dialog = "2.0.0-beta.2"
+tauri-plugin-http = "2.0.0-beta.2"
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem

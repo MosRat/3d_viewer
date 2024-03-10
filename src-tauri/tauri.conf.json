@@ -1,6 +1,6 @@
 {
   "productName": "3d_viewer",
-  "version": "0.0.0",
+  "version": "0.2.0",
   "identifier": "com.whl.viewer",
   "build": {
     "beforeDevCommand": "pnpm dev",
@@ -19,18 +19,30 @@
         "resizable": false,
         "shadow": true,
         "focus": true,
+        "theme": "Light",
         "windowEffects": {
-
-          "effects": ["acrylic"]
+          "effects": [
+            "tabbedLight"
+          ],
+          "color": [
+            225,
+            225,
+            225,
+            200
+          ]
         }
       }
     ],
     "security": {
-      "csp": "default-src 'self' ipc: http://ipc.localhost; img-src 'self' asset: http://asset.localhost",
+      "csp": "default-src * http://tauri.localhost data: blob:;ipc: * http://ipc.localhost;img-src * http://localhost blob:;asset: * http://asset.localhost blob:*",
       "assetProtocol": {
         "enable": true,
         "scope": [
-          "**"
+          "**",
+          "*",
+          "$DOWNLOAD",
+          "$DESKTOP",
+          "$HOME"
         ]
       }
     }

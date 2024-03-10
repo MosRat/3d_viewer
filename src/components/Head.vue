@@ -7,7 +7,8 @@ const appWin = getCurrent()
 
 const isMaximized = ref(false)
 // const title = ref(props.title ?? "Hello Tauri")
-const logo = ref(props.logo ?? "/integrate-light (1).svg")
+// const logo = ref(props.logo ?? "/integrate-light (1).svg")
+const logo = ref(props.logo ?? "https://beta.tauri.app/_astro/logo.CskI4xEB.svg")
 
 
 </script>
@@ -18,7 +19,12 @@ const logo = ref(props.logo ?? "/integrate-light (1).svg")
       <!--      <div class="title_bar-title_logo">-->
       <!--        <img :src="logo" alt="">-->
       <!--      </div>-->
-      <img class="title_bar-title_logo" :src="logo" alt="">
+      <!--      <img class="title_bar-title_logo" :src="logo" alt="">-->
+      <svg viewBox="0 0 14 16" fill="currentColor" class="title_bar-title_logo">
+        <path
+            d="M11.2468 4.54809L7 2L2.77581 4.53452L7.02308 6.98668L11.2468 4.54809ZM12 6.42265L8 8.73205V13.4L12 11V6.42265ZM2 6.396V11L6 13.4V8.7054L2 6.396ZM7 0L14 4V12L7 16L0 12V4L7 0Z"
+            class="astro-hco4ssbz"></path>
+      </svg>
       <p class="title_bar-title_text">
         <slot>Title</slot>
       </p>

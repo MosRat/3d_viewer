@@ -7,7 +7,7 @@ import {BVHLoader, FBXLoader, OBJLoader} from "three/addons";
 import WebGL from 'three/addons/capabilities/WebGL.js';
 import Stats from 'three/addons/libs/stats.module.js';
 import {nodeFrame} from 'three/addons/renderers/webgl-legacy/nodes/WebGLNodes.js';
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 
 import {open} from '@tauri-apps/plugin-dialog';
 import {convertFileSrc} from '@tauri-apps/api/core';
@@ -40,7 +40,7 @@ const startRender = () => {
     // SCENE
     scene = new THREE.Scene();
     scene.background = new THREE.Color(0xa0a0a0);
-    scene.fog = new THREE.Fog(0xa0a0a0, 8, 80);
+    scene.fog = new THREE.Fog(0xa0a0a0, 15, 150);
 
     //CAMERA
     camera = new THREE.PerspectiveCamera(45, 3 / 2, 0.25, 200);
@@ -53,11 +53,11 @@ const startRender = () => {
 
     const dirLight = new THREE.DirectionalLight(0xffffff, 3);
     dirLight.position.set(0, 20, 10);
-    dirLight.castShadow = true;
-    dirLight.shadow.camera.top = 180;
-    dirLight.shadow.camera.bottom = -100;
-    dirLight.shadow.camera.left = -120;
-    dirLight.shadow.camera.right = 120;
+    // dirLight.castShadow = true;
+    // dirLight.shadow.camera.top = 180;
+    // dirLight.shadow.camera.bottom = -100;
+    // dirLight.shadow.camera.left = -120;
+    // dirLight.shadow.camera.right = 120;
     scene.add(dirLight);
 
     // SKYDOME
@@ -96,11 +96,11 @@ const startRender = () => {
 
 
     //Add CUBE
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({color: 0xc0c1c0});
-    const cube = new THREE.Mesh(geometry, material);
-    cube.position.setY(5)
-    scene.add(cube);
+    // const geometry = new THREE.BoxGeometry(1, 1, 1);
+    // const material = new THREE.MeshBasicMaterial({color: 0xc0c1c0});
+    // const cube = new THREE.Mesh(geometry, material);
+    // cube.position.setY(5)
+    // scene.add(cube);
 
     // MESH AND GRID
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.MeshPhongMaterial({
@@ -133,6 +133,7 @@ const startRender = () => {
         loader = objLoader;
         break
     }
+    // fileName.value += obj_type + loader
     if (loader) {
       loader.load(
           // 'lightmap.json',
@@ -163,7 +164,7 @@ const startRender = () => {
                   child.receiveShadow = true;
                 }
               });
-              obj.rotateX(-Math.PI / 2)
+              // obj.rotateX(-Math.PI / 2)
               model = obj
               scene.add(obj)
             } else {
@@ -175,13 +176,14 @@ const startRender = () => {
               adjustSize()
               fitOnScreen()
             }
+            // fileName.value += model
           },
           xhr => {
             console.log((xhr.loaded / xhr.total * 100) + '% loaded');
           }
           ,
           err => {
-
+            // fileName.value += err + err.value + JSON.stringify(err) + err.message
           }
       )
     }
@@ -222,6 +224,7 @@ const startRender = () => {
   }
 
 }
+
 
 const filePicker = async () => {
   // Open a dialog
@@ -303,6 +306,10 @@ function frameArea(sizeToFitOnScreen, boxSize, boxCenter) {
   camera.lookAt(boxCenter.x, boxCenter.y, boxCenter.z);
 }
 
+onMounted(() => {
+  startRender();
+  started.value = true
+})
 
 </script>
 
@@ -352,7 +359,7 @@ function frameArea(sizeToFitOnScreen, boxSize, boxCenter) {
   align-items: center;
 }
 
-canvas{
+canvas {
   border-radius: 4px;
 }
 </style>
