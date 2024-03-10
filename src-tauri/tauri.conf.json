@@ -1,0 +1,49 @@
+{
+  "productName": "3d_viewer",
+  "version": "0.0.0",
+  "identifier": "com.whl.viewer",
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "pnpm build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "obj_viewer",
+        "width": 1200,
+        "height": 800,
+        "decorations": false,
+        "transparent": true,
+        "resizable": false,
+        "shadow": true,
+        "focus": true,
+        "windowEffects": {
+
+          "effects": ["acrylic"]
+        }
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self' ipc: http://ipc.localhost; img-src 'self' asset: http://asset.localhost",
+      "assetProtocol": {
+        "enable": true,
+        "scope": [
+          "**"
+        ]
+      }
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}
